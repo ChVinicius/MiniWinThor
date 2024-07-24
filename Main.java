@@ -1,56 +1,84 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+
+    public static ArrayList<Produto> listaDeProdutos = new ArrayList<>();
+    public static Scanner leia = new Scanner(System.in);
+
     public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-
-        ArrayList<Produtos> listaDeProdutos = new ArrayList<>();
 
         boolean continuar;
 
-        do{
-            Produtos produtos = new Produtos();
+        do {
+            menuPrincipal();
+            continuar = perguntarContinuar();
 
-            System.out.println("Insira o código");
-            int codigo = scanner.nextInt();
-            produtos.setCodigo(codigo);
+        } while (continuar);
 
-            System.out.println("Insira a descrição");
-            String descricao = scanner.next();
-            produtos.setDescricao(descricao);
-
-            System.out.println("Insira preço de compra");
-            double precoCompra = scanner.nextDouble();
-            produtos.setPrecoDeCompra(precoCompra);
-
-            System.out.println("Insira preço de venda");
-            double precoVenda = scanner.nextDouble();
-            produtos.setPrecoDeVenda(precoVenda);
-
-            System.out.println("Insira o status");
-            String status = scanner.next();
-            produtos.setStatus(status);
-
-            listaDeProdutos.add(produtos);
-
-            System.out.println();
-            System.out.println("Você deseja continuar? Digite Sim");
-            String resposta = scanner.nextLine();
-
-            if(resposta.equals("sim")){
-                continuar = true;
-            }else{
-                continuar = false;
-            }
-
-        }while(continuar);
-
-        for(int posicao = 0; posicao < listaDeProdutos.size(); posicao++){
-            System.out.println(listaDeProdutos.get(posicao));
-        }
-
+        System.out.println("\nPrograma finalizado!");
     }
+
+    private static void menuPrincipal() {
+        System.out.println("\n--- Sistema de Cadastro de Produtos ---");
+        System.out.println("1. Cadastrar Produto");
+        System.out.println("2. Listar Produtos");
+        System.out.println("3. Buscar Produto");
+        System.out.println("4. Editar Produto");
+        System.out.println("5. Remover Produto");
+        System.out.println("0. Sair");
+
+        System.out.print("Digite a opção desejada: ");
+        int opcao = leia.nextInt();
+        leia.nextLine();
+
+        switch (opcao) {
+            case 1:
+                cadastrarProduto();
+                break;
+            case 2:
+                break;
+            case 0:
+                System.out.println("\nSaindo do sistema...");
+                break;
+            default:
+                System.out.println("\nOpção inválida. Tente novamente.");
+        }
+    }
+
+    private static boolean perguntarContinuar() {
+        System.out.print("\nDeseja continuar? (S/N): ");
+        String resposta = leia.nextLine().toUpperCase();
+        return resposta.equals("S");
+    }
+
+    private static void cadastrarProduto() {
+        System.out.print("Insira o código do produto: ");
+        int codigo = leia.nextInt();
+        leia.nextLine();
+
+        System.out.print("Insira o nome do produto: ");
+        String nome = leia.nextLine();
+
+        System.out.print("Informe o ID do fornecedor: ");
+        int idFornecedor = leia.nextInt();
+        leia.nextLine();
+
+        System.out.print("Insira a descrição do produto: ");
+        String descricao = leia.nextLine();
+
+        System.out.print("Insira o preço de compra: ");
+        double precoDeCompra = leia.nextDouble();
+
+        System.out.print("Informe o status do produto: ");
+        String status = leia.nextLine();
+
+        System.out.print("Informe o peso do produto: ");
+        double peso = leia.nextDouble();
+        leia.nextLine();
+    }
+
 }
+
+

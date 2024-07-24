@@ -1,4 +1,5 @@
-public class Produtos{
+public class Produto{
+    private String nomeProduto;
     private int codigo;
     private int idFornecedor;
     private String descricao;
@@ -6,6 +7,17 @@ public class Produtos{
     private String status;
     private int quantidade;
     private double peso;
+
+
+
+
+    public void setNomeProduto(String nomeProduto){
+        this.nomeProduto = nomeProduto;
+    }
+
+    public String getNomeProduto(){
+        return this.nomeProduto;
+    }
 
     public int getCodigo() {
         return codigo;
